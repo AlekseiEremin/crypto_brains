@@ -1,18 +1,6 @@
 import React from 'react';
-import {
-    ComposedChart,
-    Line,
-    Area,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    Scatter,
-    ResponsiveContainer,
-} from 'recharts';
-import {data} from "./utils/graphConfig";
+import {Bar, CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis,} from 'recharts';
+import {color, data} from "./utils/graphConfig";
 import {Box} from "@mui/material";
 
 
@@ -21,8 +9,8 @@ const Featured = () => {
         <Box width={'100%'} height={'800px'}>
             <ResponsiveContainer width="100%" height="100%">
                 <ComposedChart
-                    width={500}
-                    height={400}
+                    width={400}
+                    height={300}
                     data={data}
                     margin={{
                         top: 20,
@@ -36,10 +24,13 @@ const Featured = () => {
                     <YAxis/>
                     <Tooltip/>
                     <Legend/>
-                    <Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8"/>
-                    <Bar dataKey="pv" barSize={20} fill="#413ea0"/>
-                    <Line type="monotone" dataKey="uv" stroke="#ff7300"/>
-                    <Scatter dataKey="cnt" fill="red"/>
+                    {/*<Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8"/>*/}
+                    {color.map(item =>{
+                        return item.color? <Bar dataKey="pv" barSize={10}  fill="rgba(234, 59, 90, 0.4)"/>:
+                            <Bar dataKey="pv" barSize={10} fill="rgba(21, 210, 143, 0.4)"/>
+                    })}
+                    <Line type="monotone" dataKey="uv" stroke="rgba(247, 78, 44, 1)" dot={false} activeDot={false}/>
+                    {/*<Scatter dataKey="cnt" fill="red"/>*/}
                 </ComposedChart>
             </ResponsiveContainer>
         </Box>
